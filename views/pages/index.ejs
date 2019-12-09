@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include ../partials/head %>
-  </head>
-  <body>
-      <%- include ../partials/header %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <%- include ../partials/footer %>
-  </body>
+
+<head>
+  <%- include ../partials/head %>
+</head>
+
+<body>
+  <header>
+    <%- include ../partials/header %>
+  </header>
+  <main class="main wrap">
+    <div class="container clear-top">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1><%-title%></h1>
+        </div>
+      </div><!-- /.row -->
+      <div class="row chart-container">
+        <svg class="svg-chart" width="960" height="500">
+          <!-- placeholder for the chart -->
+        </svg>
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </main>
+  <footer class="footer">
+    <% include ../partials/footer %>
+
+    <script type="text/javascript">
+
+      // Convert the bitcoins data to the data we can use in DS.js
+      var data = {
+        'BTC': 19.7,
+        'DOGE': 0.0,
+        'ETH': 78.88,
+        'LTC': 20.81,
+        'REP': 0.0,
+        'Time': datetime.datetime(2017, 5, 3, 23, 17),
+        '_id': ObjectId('591a36700a4693e45bb9708a')
+      };
+      // Draw a line chart
+
+      d3.select('body').style('background-color', 'red');
+
+    </script>
+  </footer>
+</body>
+
 </html>
