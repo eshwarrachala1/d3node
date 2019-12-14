@@ -8,4 +8,10 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/sankey', function (req, res, next) {
+  res.render('sankey', {
+    title: 'CX Analytics'
+  });
+});
+
 module.exports = router;
