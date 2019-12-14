@@ -5,8 +5,7 @@ body {
 
 body {
   background-color: #eee;
-  padding-top: 70px;
-  padding-bottom: 70px;
+  min-height: 600px;
 }
 
 .wrap {
@@ -29,7 +28,7 @@ body {
 
 .footer {
   position: relative;
-  /* margin-top: -50px; */
+  margin-top: -50px;
   height: 10px;
   clear: both;
   padding-top: 20px;
