@@ -22,6 +22,7 @@
     "morgan": "~1.9.1",
     "mustache": "3.1.0",
     "python-shell": "1.0.8",
+    "sqlite3": "4.1.1",
     "tedious": "6.6.2"
   }
 }
