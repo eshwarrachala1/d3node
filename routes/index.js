@@ -52,7 +52,7 @@ router.get('/sankey', function (req, res, next) {
   py.stdin.end();
 
   res.render('sankey', {
-    title: '' //JSON.stringify(data)
+    title: JSON.stringify(data)
   });
 
 });

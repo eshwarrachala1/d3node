@@ -87,3 +87,19 @@ circle {
 .link:hover {
   stroke-opacity: .5;
 }
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: 0.2;
+}
+.link:hover {
+  stroke-opacity: 0.5;
+  stroke: lightseagreen;
+  color: steelblue;
+}
+h6 {
+  color: steelblue;
+font-family: Verdana;
+font-size: 150%;
+}
