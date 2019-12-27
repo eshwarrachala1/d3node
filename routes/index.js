@@ -6,8 +6,8 @@ router.get('/', function (req, res, next) {
 
   var sqlite3 = require('sqlite3').verbose();
   var db = new sqlite3.Database(':memory:');
-  
-  
+
+
   db.serialize(function () {
     db.run('CREATE TABLE lorem (info TEXT)');
 
@@ -34,23 +34,18 @@ router.get('/', function (req, res, next) {
 
 router.get('/sankey', function (req, res, next) {
 
-  var spawn = require('child_process').spawn,
-    py = spawn('python', ['/public/test.py']),
-    data = [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    dataString = '';
+  var PythonShell = require('python-shell');
 
-  py.stdout.on('data', function (data) {
-    dataString += data.toString();
-  });
-
+  var options = {
+      mode: 'text',
+      args: ['-i Count how many city']
+  };
   
-  py.stdout.on('end', function () {
-    // console.log('Sum of numbers=', dataString);
+  PythonShell.run('public/ln2sql.main', options, function (err, results) {
+      if (err) throw err;
+      // results is an array consisting of messages collected during execution
+      console.log('results: %j', results);
   });
-
-  py.stdin.write(JSON.stringify(data));
-
-  py.stdin.end();
 
   res.render('sankey', {
     title: JSON.stringify(data)

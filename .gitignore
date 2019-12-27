@@ -1,3 +1,5 @@
 node_modules
 public/output.json
 public/ln2sql/__pycache__/main.cpython-36.pyc
+public/__pycache__/hello.cpython-36.pyc
+public/ln2sql/__pycache__/__init__.cpython-36.pyc
