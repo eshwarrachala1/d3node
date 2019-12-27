@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
 router.get('/sankey', function (req, res, next) {
 
   var spawn = require('child_process').spawn,
-    py = spawn('python', ['/public/python/test.py']),
+    py = spawn('python', ['/public/test.py']),
     data = [1, 2, 3, 4, 5, 6, 7, 8, 9],
     dataString = '';
 
