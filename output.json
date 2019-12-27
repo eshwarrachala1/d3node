@@ -1,14 +1,21 @@
 {
 	"select": {
 		"column": "None",
-		"type": "['COUNT']"
+		"type": "[]"
 	},
 	"from": {
-		"table": "city"
+		"table": "emp"
 	},
 	"join": {
 	},
 	"where": {
+		"condition": [
+			{ "column": "name",
+			  "type": "None",
+			  "operator": "LIKE",
+			  "value": "'%lord%'"
+			}
+		]
 	},
 	"group_by": {
 	},
