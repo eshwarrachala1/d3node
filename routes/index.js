@@ -34,21 +34,16 @@ router.get('/', function (req, res, next) {
 
 router.get('/sankey', function (req, res, next) {
 
-  var PythonShell = require('python-shell');
+  var spawn = require("child_process").spawn;
+  var pythonProcess = spawn('python', ["public/model.py", "-i Getme emp where name like Larson"]);
 
-  var options = {
-      mode: 'text',
-      args: ['-i Count how many city']
-  };
-  
-  PythonShell.run('public/ln2sql.main', options, function (err, results) {
-      if (err) throw err;
-      // results is an array consisting of messages collected during execution
-      console.log('results: %j', results);
+  pythonProcess.stdout.on('data', function (data) {
+
+    console.log(data.toString());
   });
 
   res.render('sankey', {
-    title: JSON.stringify(data)
+    title: 'test'
   });
 
 });
