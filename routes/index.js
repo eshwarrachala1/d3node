@@ -35,11 +35,11 @@ router.get('/', function (req, res, next) {
 router.get('/sankey', function (req, res, next) {
 
   var spawn = require("child_process").spawn;
-  var pythonProcess = spawn('python', ["public/model.py", "-i Getme emp where name like Larson"]);
+  var pythonProcess = spawn('python', ["public/model.py", "-i Getme emp where name like Carson"]);
 
   pythonProcess.stdout.on('data', function (data) {
 
-    console.log(data.toString());
+    // console.log(data.toString());
   });
 
   res.render('sankey', {
