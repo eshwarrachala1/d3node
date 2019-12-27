@@ -1,9 +1,11 @@
 (function () {
-   
+
     $("#report").on('click', function (event) {
         event.preventDefault();
-        var words = $('#textInput')[0].value.split(/\b\s+/);
-        var data = {};
+        var param = $('#textInput')[0].value
+        var data = {
+            param: param
+        };
         data.title = "title";
         data.message = "message";
 
@@ -16,7 +18,7 @@
             dataType: "json",
             success: function (data, status, jqXHR) {
                 console.log(data);
-               
+
                 $('#example').DataTable({
                     data: data,
                     columns: [{
