@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function (req, res, next) {
 
   var spawn = require("child_process").spawn;
-  var pythonProcess = spawn('python', ["public/model.py", "-i Getme city"]);
+  var pythonProcess = spawn('python', ["public/model.py", "-i Getme city where cityName like  wood"]);
 
   pythonProcess.stdout.on('data', function (data) {
 
