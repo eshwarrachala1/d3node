@@ -1,9 +1,8 @@
 import sys
 import argparse
 
-#python3 -m ln2sql.main -i "Count how many city with cityName is like  Pune?"
 # Read data from stdin
-
+#python3 public/model.py -i "Getme emp where name like Lord"
 
 from ln2sql import Ln2sql
 
