@@ -1,165 +1,40 @@
 (function () {
-    // d3.select(".jumbotron").style('background-color', 'lime');
-    var data = [{
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        },
-        {
-            "name": "Tiger Nixon",
-            "position": "System Architect",
-            "salary": "$3,120",
-            "start_date": "2011/04/25",
-            "office": "Edinburgh",
-            "extn": "5421"
-        },
-        {
-            "name": "Garrett Winters",
-            "position": "Director",
-            "salary": "$5,300",
-            "start_date": "2011/07/25",
-            "office": "Edinburgh",
-            "extn": "8422"
-        }
-    ];
+   
+    $("#report").on('click', function (event) {
+        event.preventDefault();
+        var words = $('#textInput')[0].value.split(/\b\s+/);
+        var data = {};
+        data.title = "title";
+        data.message = "message";
 
-    $(document).ready(function () {
-        $('#example').DataTable({
-            data: data,
-            columns: [{
-                    data: 'name'
-                },
-                {
-                    data: 'position'
-                },
-                {
-                    data: 'salary'
-                },
-                {
-                    data: 'office'
-                }
-            ]
-
-
-        });
-
-        $("#report").on('click', function (event) {
-            event.preventDefault();
-            var words = $('#textInput')[0].value.split(/\b\s+/);
-            var data = {};
-            data.title = "title";
-            data.message = "message";
-
-            $.ajax({
-                type: 'POST',
-                data: JSON.stringify(data),
-                contentType: 'application/json',
-                url: 'http://localhost:8080/NlSQl',
-                success: function (data) {
-                    console.log('success');
-                    console.log(JSON.stringify(data));
-                }
-            });
+        $.ajax({
+            type: "Get",
+            url: "http://localhost:8080/NlSql",
+            data: JSON.stringify(data), // now data come in this function
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                console.log(data);
+               
+                $('#example').DataTable({
+                    data: data,
+                    columns: [{
+                            data: 'id'
+                        },
+                        {
+                            data: 'cityName'
+                        }
+                    ]
+                });
+            },
+            error: function (jqXHR, status) {
+                // error handler
+                console.log(jqXHR);
+                alert('fail' + status.code);
+            }
         });
 
     });
+
 })();

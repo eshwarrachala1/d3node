@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 /* GET users listing. */
 
 router.get('/', function (req, res, next) {
@@ -15,7 +14,10 @@ router.get('/NlSQl', function (req, res, next) {
   console.log('test');
   // console.log(req.body.objectData);
   res.contentType('json');
-  res.send({ some: JSON.stringify({response:'json'}) });
+  res.send([{
+    "id": 1,
+    "cityName": "Jacksonville"
+  }]);
 });
 
 
