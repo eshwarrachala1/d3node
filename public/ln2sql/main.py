@@ -9,8 +9,8 @@ def main():
     arg_parser.add_argument('-l', '--language', help='Path to language configuration file', default="lang_store/english.csv")
     arg_parser.add_argument('-i', '--sentence', help='Input sentence to parse', required=True)
     arg_parser.add_argument('-j', '--json_output', help='path to JSON output file', default="output.json")
-    arg_parser.add_argument('-t', '--thesaurus', help='path to thesaurus file', default=None)
-    arg_parser.add_argument('-s', '--stopwords', help='path to stopwords file', default=None)
+    arg_parser.add_argument('-t', '--thesaurus', help='path to thesaurus file',default=None) #default="thesaurus_store/th_english.dat")
+    arg_parser.add_argument('-s', '--stopwords', help='path to stopwords file',default=None) #default="stopwords/english.txt")
 
     args = arg_parser.parse_args()
 
