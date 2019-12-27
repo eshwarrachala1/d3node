@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var partials = require('express-partials');
+var cors = require('cors');
 
 var app = express();
 
@@ -17,6 +18,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'ejs');
 app.use(partials());
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());

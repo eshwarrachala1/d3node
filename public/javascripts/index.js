@@ -141,27 +141,25 @@
 
 
         });
-    });
 
-    $("#report").on('click', function (event) {
-        event.preventDefault();
+        $("#report").on('click', function (event) {
+            event.preventDefault();
+            var words = $('#textInput')[0].value.split(/\b\s+/);
+            var data = {};
+            data.title = "title";
+            data.message = "message";
 
-        var words = $('#textInput')[0].value.split(/\b\s+/);
-
-        var data = {};
-        data.title = "title";
-        data.message = "message";
-
-        $.ajax({
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            url: 'http://localhost:8080/NlSQl',
-            success: function (data) {
-                console.log('success');
-                console.log(JSON.stringify(data));
-            }
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: 'http://localhost:8080/NlSQl',
+                success: function (data) {
+                    console.log('success');
+                    console.log(JSON.stringify(data));
+                }
+            });
         });
-    });
 
+    });
 })();
