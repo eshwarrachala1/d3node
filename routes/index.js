@@ -4,14 +4,29 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function (req, res, next) {
 
-  var spawn = require("child_process").spawn;
-  var pythonProcess = spawn('python', ["public/model.py", "-i Getme city where cityName like  wood"]);
 
-  pythonProcess.stdout.on('data', function (data) {
+  let runPy = new Promise(function (success, nosuccess) {
+    const {
+      spawn
+    } = require('child_process');
+    const pyprog = spawn('python', ["public/model.py", "-i Getme city where cityName like  wood"]);
 
+    pyprog.stdout.on('data', function (data) {
+      success(data);
+    });
+
+    pyprog.stderr.on('data', (data) => {
+      nosuccess(data);
+    });
+  });
+
+  var test = new Array();
+
+  runPy.then(function (fromRunpy) {
+    console.log(fromRunpy.toString());
     var sqlite3 = require('sqlite3').verbose();
     var db = new sqlite3.Database(':memory:');
-
+   
     db.serialize(function () {
       db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL)');
 
@@ -25,17 +40,17 @@ router.get('/', function (req, res, next) {
 
       stmt.finalize();
 
-      console.log(data.toString());
-
-      db.each(data.toString(), function (err, row) {
-        console.log(row.id + ': ' + row.cityName);
+      db.each(fromRunpy.toString(), function (err, row) {
+       // console.log(row.id + ': ' + row.cityName);
+       console.log(row);
+        test.push(row.cityName);
       });
     });
 
     db.close();
   });
 
-
+  console.log(test);
 
   res.render('index', {
     title: 'CX Analytics'
@@ -44,8 +59,6 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/sankey', function (req, res, next) {
-
-
 
   res.render('sankey', {
     title: 'test'
