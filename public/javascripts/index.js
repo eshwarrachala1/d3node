@@ -144,7 +144,18 @@
     });
     $("#report").on('click', function (event) {
         event.preventDefault();
-        // alert($('#textInput')[0].value.split(/\b\s+/));
+
+        var words  = $('#textInput')[0].value.split(/\b\s+/);
+
+        var output;
+
+        words.forEach(function(word) {
+            if(word == "get"){
+                output = "select";
+            }
+        });
+
+        alert(output);
     });
 
 

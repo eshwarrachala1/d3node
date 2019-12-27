@@ -43,6 +43,7 @@ router.get('/sankey', function (req, res, next) {
     dataString += data.toString();
   });
 
+  
   py.stdout.on('end', function () {
     // console.log('Sum of numbers=', dataString);
   });
