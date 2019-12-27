@@ -4,27 +4,38 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function (req, res, next) {
 
-  var sqlite3 = require('sqlite3').verbose();
-  var db = new sqlite3.Database(':memory:');
+  var spawn = require("child_process").spawn;
+  var pythonProcess = spawn('python', ["public/model.py", "-i Getme city"]);
 
+  pythonProcess.stdout.on('data', function (data) {
 
-  db.serialize(function () {
-    db.run('CREATE TABLE lorem (info TEXT)');
+    var sqlite3 = require('sqlite3').verbose();
+    var db = new sqlite3.Database(':memory:');
 
-    var stmt = db.prepare('INSERT INTO lorem VALUES (?)');
+    db.serialize(function () {
+      db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL)');
 
-    for (var i = 0; i < 10; i++) {
-      stmt.run('Ipsum ' + i);
-    }
+      var stmt = db.prepare('INSERT INTO city VALUES (?,?)');
 
-    stmt.finalize();
+      stmt.run(1, 'Pune');
+      stmt.run(2, 'Hillwood');
+      stmt.run(3, 'San Jose');
+      stmt.run(4, 'The City');
+      stmt.run(5, 'South Park');
 
-    db.each('SELECT rowid AS id, info FROM lorem', function (err, row) {
-      console.log(row.id + ': ' + row.info);
+      stmt.finalize();
+
+      console.log(data.toString());
+
+      db.each(data.toString(), function (err, row) {
+        console.log(row.id + ': ' + row.cityName);
+      });
     });
+
+    db.close();
   });
 
-  db.close();
+
 
   res.render('index', {
     title: 'CX Analytics'
@@ -34,13 +45,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/sankey', function (req, res, next) {
 
-  var spawn = require("child_process").spawn;
-  var pythonProcess = spawn('python', ["public/model.py", "-i Getme emp where name like Carson"]);
 
-  pythonProcess.stdout.on('data', function (data) {
-
-    // console.log(data.toString());
-  });
 
   res.render('sankey', {
     title: 'test'

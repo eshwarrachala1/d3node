@@ -4,18 +4,11 @@
 		"type": "[]"
 	},
 	"from": {
-		"table": "emp"
+		"table": "city"
 	},
 	"join": {
 	},
 	"where": {
-		"condition": [
-			{ "column": "name",
-			  "type": "None",
-			  "operator": "LIKE",
-			  "value": "'%carson%'"
-			}
-		]
 	},
 	"group_by": {
 	},
