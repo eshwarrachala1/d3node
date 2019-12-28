@@ -32,9 +32,9 @@ router.get('/NlSQl', function (req, res, next) {
     });
   });
 
-  var data = [];
 
   runPy.then(function (fromRunpy) {
+    var data = [];
 
     db.serialize(function () {
       db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL)');
@@ -49,21 +49,16 @@ router.get('/NlSQl', function (req, res, next) {
 
       stmt.finalize();
 
-      db.each(fromRunpy.toString(), function (err, row) {
-        console.log(row);
-        data.push({
-          "id": row.id,
-          "cityName": row.cityName
-        });
+      db.all(fromRunpy.toString(), function (err, row) {
+        data.push(row);
       });
-
+      db.close();
       console.log(data);
     });
-    db.close();
-  });
 
-  res.contentType('json');
-  res.send(data);
+    res.contentType('json');
+    res.send(data);
+  });
 });
 
 router.get('/sankey', function (req, res, next) {
