@@ -10,10 +10,10 @@
 	},
 	"where": {
 		"condition": [
-			{ "column": "cityName",
+			{ "column": "id",
 			  "type": "None",
-			  "operator": "LIKE",
-			  "value": "'%r%'"
+			  "operator": "=",
+			  "value": "'2'"
 			}
 		]
 	},

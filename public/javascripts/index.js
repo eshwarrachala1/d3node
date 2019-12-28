@@ -2,7 +2,8 @@
 
     $("#report").on('click', function (event) {
         event.preventDefault();
-     
+
+
         $.ajax({
             type: "Get",
             url: "http://localhost:8080/NlSql",
@@ -13,9 +14,7 @@
             crossDomain: true,
             dataType: "json",
             success: function (data, status, jqXHR) {
-                // console.log(data);
-                table = $('#example').DataTable({
-                    retrieve: true,
+                $('#example').DataTable({
                     data: data,
                     columns: [{
                             data: 'id'
@@ -23,9 +22,9 @@
                         {
                             data: 'cityName'
                         }
-                    ]
+                    ],
+                    "bDestroy": true
                 });
-
             },
             error: function (jqXHR, status) {
                 // error handler
