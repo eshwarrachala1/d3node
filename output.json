@@ -9,13 +9,6 @@
 	"join": {
 	},
 	"where": {
-		"condition": [
-			{ "column": "id",
-			  "type": "None",
-			  "operator": "=",
-			  "value": "'2'"
-			}
-		]
 	},
 	"group_by": {
 	},

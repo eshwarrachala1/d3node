@@ -37,21 +37,20 @@ router.get('/NlSQl', function (req, res, next) {
     var data = [],
       records = [];
 
-
     db.serialize(function () {
-      db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL)');
+      db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL,people bigint null)');
 
-      var stmt = db.prepare('INSERT INTO city VALUES (?,?)');
+      var stmt = db.prepare('INSERT INTO city VALUES (?,?,?)');
 
-      stmt.run(1, 'Pune');
-      stmt.run(2, 'Hillwood');
-      stmt.run(3, 'San Jose');
-      stmt.run(4, 'The City');
-      stmt.run(5, 'South Park');
-      stmt.run(6, 'Jacksonville');
-      stmt.run(7, 'Atlanta');
-      stmt.run(8, 'Savanna');
-      stmt.run(9, 'Reno');
+      stmt.run(1, 'Pune',400000);
+      stmt.run(2, 'Hillwood',20000);
+      stmt.run(3, 'San Jose',40000);
+      stmt.run(4, 'The City',60000);
+      stmt.run(5, 'South Park',10000);
+      stmt.run(6, 'Jacksonville',50000);
+      stmt.run(7, 'Atlanta',900000);
+      stmt.run(8, 'Savanna',10000);
+      stmt.run(9, 'Reno',40000);
 
       stmt.finalize();
 
@@ -72,7 +71,6 @@ router.get('/NlSQl', function (req, res, next) {
 
       (async function () {
         records = await getRecords();
-
         res.contentType('json');
         res.send(records);
 

@@ -293,14 +293,14 @@
 
     var sankey = d3
         .sankey()
-        .nodeWidth(10)
-        .nodePadding(160)
+        .nodeWidth(1)
+        .nodePadding(100)
         .size([width, height]);
 
     sankey
         .nodes(data.nodes)
         .links(data.links)
-        .layout(1);
+        .layout(6);
 
     // add in the links
     var link = svg
@@ -343,7 +343,7 @@
     // add the circles for the nodes
     node
         .append("circle")
-        .attr("r", 20)
+        .attr("r", sankey.nodeWidth()*20)
         .attr("cy", function (d) {
             return d.dy / 2;
         })
