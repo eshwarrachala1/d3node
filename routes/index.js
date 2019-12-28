@@ -34,7 +34,9 @@ router.get('/NlSQl', function (req, res, next) {
 
 
   runPy.then(function (fromRunpy) {
-    var data = [];
+    var data = [],
+      records = [];
+
 
     db.serialize(function () {
       db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL)');
@@ -49,15 +51,31 @@ router.get('/NlSQl', function (req, res, next) {
 
       stmt.finalize();
 
-      db.all(fromRunpy.toString(), function (err, row) {
-        data.push(row);
-      });
-      db.close();
-      console.log(data);
+      function getRecords() {
+        return new Promise((resolve, reject) => {
+          db.all(fromRunpy.toString(), [], (err, rows) => {
+            if (err) {
+              return console.error(err.message);
+            }
+            rows.forEach((row) => {
+              data.push(row);
+            });
+            resolve(data);
+          })
+
+        })
+      }
+
+      (async function () {
+        records = await getRecords();
+
+        res.contentType('json');
+        res.send(records);
+
+      })()
+
     });
 
-    res.contentType('json');
-    res.send(data);
   });
 });
 
