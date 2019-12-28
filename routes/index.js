@@ -11,9 +11,7 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/NlSQl', function (req, res, next) {
-
   console.log(req.query.message);
-
   res.contentType('json');
   res.send([{
     "id": 1,
