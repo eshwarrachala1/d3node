@@ -9,13 +9,6 @@
 	"join": {
 	},
 	"where": {
-		"condition": [
-			{ "column": "cityName",
-			  "type": "None",
-			  "operator": "LIKE",
-			  "value": "'%wood%'"
-			}
-		]
 	},
 	"group_by": {
 	},
