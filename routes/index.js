@@ -18,8 +18,10 @@ router.get('/NlSQl', function (req, res, next) {
   console.log(req.query.message);
 
   let runPy = new Promise(function (success, nosuccess) {
-    const { spawn } = require('child_process');
-    const pyprog = spawn('python', ["public/model.py", "-i Getme city"]);
+    const {
+      spawn
+    } = require('child_process');
+    const pyprog = spawn('python', ["public/model.py", "-i " + req.query.message]);
 
     pyprog.stdout.on('data', function (data) {
       success(data);
@@ -30,10 +32,7 @@ router.get('/NlSQl', function (req, res, next) {
     });
   });
 
-  var data = new Array({
-    "id": 1,
-    "cityName": "test"
-  });
+  var data = [];
 
   runPy.then(function (fromRunpy) {
 
@@ -51,12 +50,15 @@ router.get('/NlSQl', function (req, res, next) {
       stmt.finalize();
 
       db.each(fromRunpy.toString(), function (err, row) {
-        console.log(row.id);
-        data.push({ "id": row.id, "cityName": row.cityName });
+        console.log(row);
+        data.push({
+          "id": row.id,
+          "cityName": row.cityName
+        });
       });
 
+      console.log(data);
     });
-
     db.close();
   });
 
