@@ -2,8 +2,7 @@
 
     $("#report").on('click', function (event) {
         event.preventDefault();
-
-
+     
         $.ajax({
             type: "Get",
             url: "http://localhost:8080/NlSql",
@@ -15,7 +14,8 @@
             dataType: "json",
             success: function (data, status, jqXHR) {
                 // console.log(data);
-                $('#example').DataTable({
+                table = $('#example').DataTable({
+                    retrieve: true,
                     data: data,
                     columns: [{
                             data: 'id'
@@ -25,6 +25,7 @@
                         }
                     ]
                 });
+
             },
             error: function (jqXHR, status) {
                 // error handler

@@ -48,6 +48,10 @@ router.get('/NlSQl', function (req, res, next) {
       stmt.run(3, 'San Jose');
       stmt.run(4, 'The City');
       stmt.run(5, 'South Park');
+      stmt.run(6, 'Jacksonville');
+      stmt.run(7, 'Atlanta');
+      stmt.run(8, 'Savanna');
+      stmt.run(9, 'Reno');
 
       stmt.finalize();
 

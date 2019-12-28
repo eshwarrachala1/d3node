@@ -9,6 +9,13 @@
 	"join": {
 	},
 	"where": {
+		"condition": [
+			{ "column": "cityName",
+			  "type": "None",
+			  "operator": "LIKE",
+			  "value": "'%r%'"
+			}
+		]
 	},
 	"group_by": {
 	},
