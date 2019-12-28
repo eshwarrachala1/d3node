@@ -11,12 +11,13 @@ router.get('/', function (req, res, next) {
 
 
 router.get('/NlSQl', function (req, res, next) {
-  console.log('test');
-  console.log(req.body.data);
+
+  console.log(req.query.message);
+
   res.contentType('json');
   res.send([{
     "id": 1,
-    "cityName": "Jacksonville1"
+    "cityName": "Jacksonville"
   }]);
 });
 
