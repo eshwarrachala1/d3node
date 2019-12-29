@@ -13,7 +13,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `city` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
+  `cityName` varchar(30) NOT NULL,
   `people` bigint null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
