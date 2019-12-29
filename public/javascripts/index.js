@@ -12,20 +12,8 @@
             dataType: "json",
             success: function (data, status, jqXHR) {
                 $('#example').DataTable({
-                    data: data,
-                    columns: [{
-                            data: 'id',
-                            title: 'id'
-                        },
-                        {
-                            data: 'name',
-                            title: 'city'
-                        },
-                        {
-                            data: 'people',
-                            title: 'people'
-                        }
-                    ],
+                    data: data.records,
+                    columns: data.columns,
                     bDestroy: true,
                     dom: "Bfrtip",
                     language: {

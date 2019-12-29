@@ -44,32 +44,50 @@ router.get('/NlSQl', function (req, res, next) {
 
   runPy.then(function (fromRunpy) {
     var data = [],
-      records = [];
+      records = [],
+      columns = [],
+      output = {};
 
     db.serialize(function () {
       db.run('CREATE TABLE city (id int(11) NOT NULL,name varchar(30) NOT NULL,people bigint null)');
 
       var stmt = db.prepare('INSERT INTO city VALUES (?,?,?)');
 
-      stmt.run(1, 'Pune',400000);
-      stmt.run(2, 'Hillwood',20000);
-      stmt.run(3, 'San Jose',40000);
-      stmt.run(4, 'The City',60000);
-      stmt.run(5, 'South Park',10000);
-      stmt.run(6, 'Jacksonville',50000);
-      stmt.run(7, 'Atlanta',900000);
-      stmt.run(8, 'Savanna',10000);
-      stmt.run(9, 'Reno',40000);
+      stmt.run(1, 'Pune', 400000);
+      stmt.run(2, 'Hillwood', 20000);
+      stmt.run(3, 'San Jose', 40000);
+      stmt.run(4, 'The City', 60000);
+      stmt.run(5, 'South Park', 10000);
+      stmt.run(6, 'Jacksonville', 50000);
+      stmt.run(7, 'Atlanta', 900000);
+      stmt.run(8, 'Savanna', 10000);
+      stmt.run(9, 'Reno', 40000);
 
+      stmt.finalize();
+
+      db.run('CREATE TABLE emp (id int(11) NOT NULL,name varchar(50) NOT NULL,cityId int(11) NOT NULL,score int(11) NOT NULL)')
+      stmt = db.prepare('INSERT INTO emp VALUES (?,?,?,?)');
+      stmt.run(1, 'Lord Brain', 1, 5);
+      stmt.run(2, 'Matthew', 2, 4);
+      stmt.run(3, 'Ferrero Jeremy', 3, 6);
+      stmt.run(4, 'Bud Light', 4, 4);
+      stmt.run(5, 'Demi Moore', 5, 6);
+      stmt.run(6, 'Woody Allen', 1, 2);
+      stmt.run(7, 'Joaquin Phoenix', 2, 9);
+      stmt.run(8, 'Meg Ryan', 3, 4);
+      stmt.run(9, 'Trey Anastasio', 4, 3);
+      stmt.run(10, 'Marie Osmond', 5, 6);
       stmt.finalize();
 
       function getRecords() {
         return new Promise((resolve, reject) => {
+          console.log(fromRunpy.toString());
           db.all(fromRunpy.toString(), [], (err, rows) => {
             if (err) {
               return console.error(err.message);
             }
             rows.forEach((row) => {
+              console.log(row);
               data.push(row);
             });
             resolve(data);
@@ -80,8 +98,25 @@ router.get('/NlSQl', function (req, res, next) {
 
       (async function () {
         records = await getRecords();
+        columns = [{
+            data: 'id',
+            title: 'id'
+          },
+          {
+            data: 'name',
+            title: 'city'
+          },
+          {
+            data: 'people',
+            title: 'people'
+          }
+        ];
+
+        output.records = records;
+        output.columns = columns;
+
         res.contentType('json');
-        res.send(records);
+        res.send(output);
 
       })()
 
