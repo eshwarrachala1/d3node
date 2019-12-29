@@ -94,7 +94,15 @@ router.get('/NlSQl', function (req, res, next) {
             });
             var keys = Object.keys(obj);
             for (var i = 0; i < keys.length; i++) {
-              var ob = { data: keys[i], title: keys[i] };
+              var column = keys[i];
+              if (column.indexOf("COUNT") > -1) {
+                column = column.replace("COUNT", "").replace("(","").replace(")","").replace(".","");
+              }
+              
+              var ob = {
+                data: column,
+                title: column
+              };
               columns.push(ob);
             }
             output.data = data;

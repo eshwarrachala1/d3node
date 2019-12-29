@@ -13,7 +13,10 @@ ASC: ascending, increasing
 DESC: descending, decreasing, inverse, reverse, opposite
 GROUP: group, grouped, clubbed
 NEGATION: not, no
+NOT: not, no 
+NOT LIKE: not like 
 EQUAL: is, equal, equals, equal to, equals to, are
 LIKE: like, likes, similar to
 DISTINCT: distinct, different, distinctive, distinctly, unique
 SELECT: select, get, get me, bring, bring me
+INNER JOIN: inner join , join
