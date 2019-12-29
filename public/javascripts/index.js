@@ -16,7 +16,7 @@
                             title:'id'
                         },
                         {
-                            data: 'cityName',
+                            data: 'name',
                             title:'city'
                         },
                         {

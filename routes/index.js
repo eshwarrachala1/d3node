@@ -10,6 +10,15 @@ router.get('/', function (req, res, next) {
 });
 
 
+
+router.get('/sankey', function (req, res, next) {
+  res.render('sankey', {
+    title: 'test'
+  });
+});
+
+
+
 router.get('/NlSQl', function (req, res, next) {
 
   var sqlite3 = require('sqlite3').verbose();
@@ -38,7 +47,7 @@ router.get('/NlSQl', function (req, res, next) {
       records = [];
 
     db.serialize(function () {
-      db.run('CREATE TABLE city (id int(11) NOT NULL,cityName varchar(30) NOT NULL,people bigint null)');
+      db.run('CREATE TABLE city (id int(11) NOT NULL,name varchar(30) NOT NULL,people bigint null)');
 
       var stmt = db.prepare('INSERT INTO city VALUES (?,?,?)');
 
@@ -81,12 +90,6 @@ router.get('/NlSQl', function (req, res, next) {
   });
 });
 
-router.get('/sankey', function (req, res, next) {
-  res.render('sankey', {
-    title: 'test'
-  });
-
-});
 
 
 module.exports = router;
