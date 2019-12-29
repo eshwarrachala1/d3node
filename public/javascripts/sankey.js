@@ -276,10 +276,10 @@
             top: 10,
             right: 20,
             bottom: 20,
-            left: 20
+            left: 40
         },
         width = 1100 - margin.left - margin.right,
-        height = 700 - margin.top - margin.bottom;
+        height = 650 - margin.top - margin.bottom;
 
     var svg = d3
         .select("#my_dataviz")
