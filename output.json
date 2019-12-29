@@ -9,6 +9,13 @@
 	"join": {
 	},
 	"where": {
+		"condition": [
+			{ "column": "name",
+			  "type": "None",
+			  "operator": "LIKE",
+			  "value": "'%p%'"
+			}
+		]
 	},
 	"group_by": {
 	},

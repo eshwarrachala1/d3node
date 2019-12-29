@@ -4,7 +4,9 @@
         $.ajax({
             type: "Get",
             url: "http://localhost:8080/NlSql",
-            data: {"message": $('#textInput')[0].value},
+            data: {
+                "message": $('#textInput')[0].value
+            },
             contentType: "application/json; charset=utf-8",
             crossDomain: true,
             dataType: "json",
@@ -13,23 +15,26 @@
                     data: data,
                     columns: [{
                             data: 'id',
-                            title:'id'
+                            title: 'id'
                         },
                         {
                             data: 'name',
-                            title:'city'
+                            title: 'city'
                         },
                         {
                             data: 'people',
-                            title:'people'
+                            title: 'people'
                         }
                     ],
-                    "bDestroy": true
+                    bDestroy: true,
+                    dom: "Bfrtip",
+                    language: {
+                        infoEmpty: "No matching records found",
+                    }
                 });
             },
             error: function (jqXHR, status) {
                 console.log(jqXHR);
-                alert('fail' + status.code);
             }
         });
 
