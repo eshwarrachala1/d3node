@@ -44,7 +44,7 @@ router.get('/NlSQl', function (req, res, next) {
 
   runPy.then(function (fromRunpy) {
     var data = [],
-      records = [],
+      records = {},
       columns = [],
       output = {};
 
@@ -79,6 +79,7 @@ router.get('/NlSQl', function (req, res, next) {
       stmt.run(10, 'Marie Osmond', 5, 6);
       stmt.finalize();
 
+
       function getRecords() {
         return new Promise((resolve, reject) => {
           console.log(fromRunpy.toString());
@@ -86,37 +87,32 @@ router.get('/NlSQl', function (req, res, next) {
             if (err) {
               return console.error(err.message);
             }
+            var obj = {};
             rows.forEach((row) => {
-              console.log(row);
+              obj = row;
               data.push(row);
             });
-            resolve(data);
+            var keys = Object.keys(obj);
+            for (var i = 0; i < keys.length; i++) {
+              var ob = { data: keys[i], title: keys[i] };
+              columns.push(ob);
+            }
+            output.data = data;
+            output.columns = columns;
+            resolve(output);
           })
 
+          db.close();
         })
       }
 
+
+
       (async function () {
         records = await getRecords();
-        columns = [{
-            data: 'id',
-            title: 'id'
-          },
-          {
-            data: 'name',
-            title: 'city'
-          },
-          {
-            data: 'people',
-            title: 'people'
-          }
-        ];
-
-        output.records = records;
-        output.columns = columns;
-
+        console.log(records);
         res.contentType('json');
-        res.send(output);
+        res.send(records);
 
       })()
 

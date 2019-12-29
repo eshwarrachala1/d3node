@@ -4,16 +4,14 @@
         $.ajax({
             type: "Get",
             url: "http://localhost:8080/NlSql",
-            data: {
-                "message": $('#textInput')[0].value
-            },
+            data: { "message": $('#textInput')[0].value},
             contentType: "application/json; charset=utf-8",
             crossDomain: true,
             dataType: "json",
-            success: function (data, status, jqXHR) {
+            success: function (records, status, jqXHR) {
                 $('#example').DataTable({
-                    data: data.records,
-                    columns: data.columns,
+                    data: records.data,
+                    columns: records.columns,
                     bDestroy: true,
                     dom: "Bfrtip",
                     language: {
