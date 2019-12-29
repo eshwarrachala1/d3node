@@ -10,10 +10,10 @@
 	},
 	"where": {
 		"condition": [
-			{ "column": "name",
+			{ "column": "id",
 			  "type": "None",
-			  "operator": "LIKE",
-			  "value": "'%j%'"
+			  "operator": "=",
+			  "value": "'5'"
 			}
 		]
 	},
