@@ -300,7 +300,7 @@
     sankey
         .nodes(data.nodes)
         .links(data.links)
-        .layout(6);
+        .layout(32);
 
     // add in the links
     var link = svg

@@ -1,6 +1,4 @@
 (function () {
-
-
     $("#report").on('click', function (event) {
         event.preventDefault();
         $.ajax({
