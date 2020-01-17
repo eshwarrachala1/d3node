@@ -3,7 +3,7 @@
         event.preventDefault();
         $.ajax({
             type: "Get",
-            url: "http://localhost:8080/NlSql",
+            url: "/NlSql",
             data: {
                 "message": $('#textInput')[0].value
             },
